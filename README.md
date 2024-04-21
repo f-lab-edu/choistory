@@ -19,4 +19,4 @@
 - 답글달기
 
 ## Infra Structure
-![infra structure](//choistory/images/infra structure_v0.1.png)
+![infra structure](https://github.com/f-lab-edu/choistory/blob/main/images/infra%20structure_v0.1.png)
