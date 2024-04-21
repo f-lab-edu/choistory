@@ -1,11 +1,6 @@
 # choistory
 시간이 지나면 선택한 기록 외에는 모두 지워지는 sns
 
-## feature
-- 짧은 글이나 이미지를 올릴 수 있다.
-- 지정한 시간이 지나면 남기기로 선택하지 않은 글은 삭제된다.
-- 자신이나 다른 유저의 글에 답글을 남길 수 있다.
-- 다른 유저가 올린 글을 구독할 수 있다.
 ## Feature
 ### 서비스시작
 - 회원가입
@@ -22,3 +17,6 @@
 #### 글 읽기
 - 구독 글까지 시간순 정렬
 - 답글달기
+
+## Infra Structure
+![infra structure](//choistory/images/infra structure_v0.1.png)
