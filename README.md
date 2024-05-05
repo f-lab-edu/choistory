@@ -20,3 +20,6 @@
 
 ## Infra Structure
 ![infra structure](https://github.com/f-lab-edu/choistory/blob/main/images/infra%20structure_v0.1.png)
+
+## ERD
+![infra structure](https://github.com/f-lab-edu/choistory/blob/main/images/erd_v0.1.png)
