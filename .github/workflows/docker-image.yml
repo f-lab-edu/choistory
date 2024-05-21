@@ -1,0 +1,17 @@
+name: Docker Image CI
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login docker registry
+      run: docker login -u $(username) -p $(password)
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag choistory-apiserver.kr.ncr.ntruss.com/choistory:$(date +%s)
+    - name: Push the Docker image
+      run: docker push choistory-apiserver.kr.ncr.ntruss.com/choistory:$(date +%s)
