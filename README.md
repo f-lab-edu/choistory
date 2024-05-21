@@ -22,4 +22,4 @@
 ![infra structure](https://github.com/f-lab-edu/choistory/blob/main/images/infra%20structure_v0.1.png)
 
 ## ERD
-![erd](https://github.com/f-lab-edu/choistory/blob/main/images/ERD_v0.1.png)
+![erd](https://github.com/f-lab-edu/choistory/blob/main/images/ERD_v1.0.png)
