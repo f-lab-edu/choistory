@@ -12,6 +12,6 @@ jobs:
     - name: Login docker registry
       run: docker login choistory-apiserver.kr.ncr.ntruss.com -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag choistory-apiserver.kr.ncr.ntruss.com/choistory:$(date +%s)
+      run: docker build . --file Dockerfile --tag choistory-apiserver.kr.ncr.ntruss.com/choistory:$GITHUB_RUN_ID
     - name: Push the Docker image
-      run: docker push choistory-apiserver.kr.ncr.ntruss.com/choistory:$(date +%s)
+      run: docker push choistory-apiserver.kr.ncr.ntruss.com/choistory:$GITHUB_RUN_ID
