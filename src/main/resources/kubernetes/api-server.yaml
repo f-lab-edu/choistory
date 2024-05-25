@@ -33,7 +33,7 @@ spec:
               name: port-mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              valueFromm:
+              valueFrom:
                 secretKeyRef:
                   name: mysql-root-pass
                   key: password
