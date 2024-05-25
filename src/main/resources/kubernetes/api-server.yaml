@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
         - name: api-server
-          image: choistory-apiserver.kr.ncr.ntruss.com/choistory:9176384020
+          image: choistory-apiserver.kr.ncr.ntruss.com/choistory:9234945533
           ports:
           - containerPort: 8080
             name: port-api-server
