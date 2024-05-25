@@ -2,7 +2,8 @@ package com.choistory.feed.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController("feed")
+@RestController
+@RequestMapping("feed")
 public class FeedController {
   /**
    * 글 쓰기
@@ -14,19 +15,10 @@ public class FeedController {
   }
 
   /**
-   * 로그인한 유저의 글 목록 조회
-   */
-  @GetMapping
-  public void GetFeeds(){
-    getFeeds("my-username");
-  }
-
-  /**
    * 특정 유저의 글 목록과 각 글에 달린 댓글 수 조회
    */
   @GetMapping
-  public void getFeeds(@RequestParam("username") String username){
-
+  public void GetFeeds(@RequestParam("username") String username){
   }
 
   /**

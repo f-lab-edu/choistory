@@ -2,7 +2,8 @@ package com.choistory.email.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController("email")
+@RestController
+@RequestMapping("email")
 public class EmailController {
   /**
    * 이메일 중복 확인

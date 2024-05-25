@@ -2,7 +2,8 @@ package com.choistory.users.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController("user")
+@RestController
+@RequestMapping("user")
 public class UserController {
   /**
    * 회원가입
