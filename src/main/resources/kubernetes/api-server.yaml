@@ -79,7 +79,7 @@ spec:
         - name: api-server
           image: choistory.kr.ncr.ntruss.com/choistory-api:9235440421
           ports:
-          - containerPort: 8080
+          - containerPort: 8081
             name: port-api-server
           env:
             - name: SPRING_PROFILES_ACTIVE
