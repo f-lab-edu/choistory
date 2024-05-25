@@ -12,17 +12,11 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag choistory.kr.ncr.ntruss.com/choistory-api:$GITHUB_RUN_ID
 
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Login docker registry
-        run: docker login choistory.kr.ncr.ntruss.com -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
-      - name: Push the Docker image
-        run: docker push choistory.kr.ncr.ntruss.com/choistory-api:$GITHUB_RUN_ID
-  cd:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: change deployment tag
-        run: sed
+    - name: Login docker registry
+      run: docker login choistory.kr.ncr.ntruss.com -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+    - name: Push the Docker image
+      run: docker push choistory.kr.ncr.ntruss.com/choistory-api:$GITHUB_RUN_ID
+
+
+    - name: change deployment tag
+      run: sed -i -r 's/:([0-9].*)\s/:$GITHUB_RUN_ID/' src/main/resources/kubernetes/api-server.yaml
