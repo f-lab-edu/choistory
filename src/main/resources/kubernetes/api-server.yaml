@@ -84,6 +84,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
+      imagePullSecrets:
+        - name: regcred
 
 ---
 
