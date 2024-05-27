@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("timeline")
+@RequestMapping("/v1/timeline")
 public class TimelineController {
   @Operation(summary = "타임라인 가져오기", description = "자신의 글과 자신이 구독하는 유저들의 글을 한번에 20건씩 조회한다.")
   @Parameters({

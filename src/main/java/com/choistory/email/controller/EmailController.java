@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("email")
+@RequestMapping("v1/emails")
 public class EmailController {
 
   @Operation(summary="이메일 중복 확인", description="회원가입시 이미 사용중인 이메일이 있는지 확인한다.")

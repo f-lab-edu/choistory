@@ -17,7 +17,7 @@ public class SubscribeController {
   @Parameters({
           @Parameter(name="followeeId", description = "구독 대상자의 아이디")
   })
-  @PostMapping("/followee/{followeeId}")
+  @PostMapping("/v1/followee/{followeeId}")
   public ResponseEntity<Void> follow(@PathVariable String followeeId){
     return ResponseEntity.status(200).build();
   }
@@ -26,7 +26,7 @@ public class SubscribeController {
   @Parameters({
           @Parameter(name="followeeId", description = "구독 대상자의 아이디")
   })
-  @DeleteMapping("/followee/{followeeId}")
+  @DeleteMapping("/v1/followee/{followeeId}")
   public ResponseEntity<Void> unfollow(@PathVariable String followeeId){
     return ResponseEntity.status(200).build();
   }
@@ -35,7 +35,7 @@ public class SubscribeController {
   @Parameters({
           @Parameter(name="followerId", description = "구독자의 아이디")
   })
-  @DeleteMapping("/follower/{followerId}")
+  @DeleteMapping("/v1/follower/{followerId}")
   public ResponseEntity<Void> deleteFollower(@PathVariable String followerId){
     return ResponseEntity.status(200).build();
   }

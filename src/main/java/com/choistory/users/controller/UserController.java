@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("v1/users")
 public class UserController {
   @Operation(summary="회원가입", description = "새로운 회원을 생성한다.")
   @Parameters({
