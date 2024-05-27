@@ -41,7 +41,7 @@
 
 ## 참고화면
 ![front 화면1](https://github.com/f-lab-edu/choistory/blob/develop/images/front_01.png)<br>
-![front 화면2](https://github.com/f-lab-edu/choistory/blob/develop/images/front_02png)<br>
+![front 화면2](https://github.com/f-lab-edu/choistory/blob/develop/images/front_02.png)<br>
 ![front 화면3](https://github.com/f-lab-edu/choistory/blob/develop/images/front_03.png)<br>
 ** 위 화면은 인터페이스 도출을 위해 참고로 구성한 화면입니다. 실제로는 개발하지 않습니다.
 
