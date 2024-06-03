@@ -3,21 +3,37 @@ package com.choistory.feed.controller;
 import com.choistory.feed.dto.FeedDto;
 import com.choistory.feed.dto.HttpFeedRequestDto;
 import com.choistory.feed.dto.HttpFeedResponseDto;
+import com.choistory.feed.service.FeedService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+
 @RestController
 @RequestMapping("v1/feeds")
+@RequiredArgsConstructor
 public class FeedController {
+  private final FeedService feedService;
+
   @Operation(summary = "글 쓰기", description = "자신의 피드에 글을 작성 한다. 첨부파일이 있는 경우 파일을 업로드한다.")
   @Parameters({
           @Parameter(name="body", description = "작성할 글 본문과 첨부 파일이 있는 객체", required = true)
   })
   @PostMapping
-  public ResponseEntity<Void> createFeed(@RequestParam HttpFeedRequestDto body){
+  public ResponseEntity<Void> createFeed(@RequestBody @Valid HttpFeedRequestDto body){
+    feedService.createFeed(FeedDto.builder()
+            .writer(body.getWriter())
+            .content(body.getContent())
+            .images(body.getImages())
+            .duration(body.getDuration())
+            .expireAt(body.isExpire()? ZonedDateTime.now().plusDays(body.getDuration()):null)
+            .parent(FeedDto.builder().id(body.getParentId()).build())
+        .build());
       return ResponseEntity.status(200).build();
   }
   
