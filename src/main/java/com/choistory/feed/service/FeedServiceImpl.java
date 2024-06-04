@@ -16,7 +16,7 @@ public class FeedServiceImpl implements FeedService{
   @Override
   @Transactional
   public Feed createFeed(FeedDto feed) {
-    if(feed.getImages().size() > 0){
+    if(feed.getImages() != null && feed.getImages().size() > 0){
       // todo. 첨부이미지 업로드 및 save
       // imageRepository.save(null);
     }

@@ -7,9 +7,9 @@ import jakarta.persistence.*;
 public class Image {
     @Id
     @Column(name = "id", length=36)
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String  imageId;
-    @Column(length=36)
+    @Column(name = "comment_id", length=36)
     private String commentId;
     @Column
     private String path;

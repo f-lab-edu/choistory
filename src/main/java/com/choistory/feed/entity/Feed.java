@@ -17,20 +17,20 @@ import java.time.ZonedDateTime;
 public class Feed {
     @Id
     @Column(name = "id", length=36)
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String feedId;
     @Column(length=36)
     private String parent;
     @Column(length=200)
     private String content;
-    @Column(length=36)
+    @Column(name="user_id", length=36)
     private String userId;
-    @Column
+    @Column(name="created_at")
     private ZonedDateTime createdAt;
     @Column
     private int duration;
-    @Column
+    @Column(name="expire_at")
     private ZonedDateTime expireAt;
-    @Column
+    @Column(name="deleted_at")
     private ZonedDateTime deletedAt;
 }
