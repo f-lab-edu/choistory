@@ -1,16 +1,20 @@
 package com.choistory.file.entity;
 
+import com.choistory.feed.entity.Feed;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name="TB_IMAGE")
 public class Image {
     @Id
     @Column(name = "id", length=36)
     @GeneratedValue(strategy = GenerationType.UUID)
     private String  imageId;
-    @Column(name = "comment_id", length=36)
-    private String commentId;
+    @JoinColumn(name = "comment_id")
+    @ManyToOne
+    private Feed comment;
     @Column
     private String path;
     @Column

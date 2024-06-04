@@ -14,7 +14,7 @@ public class FeedDto {
   private String writer;
   private String profileImagePath;
   private String content;
-  private List<MultipartFile> images;
+  private List<String> images;
   private int duration;
   private ZonedDateTime expireAt;
   private FeedDto parent;
