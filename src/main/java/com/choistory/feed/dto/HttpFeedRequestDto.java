@@ -20,9 +20,9 @@ public class HttpFeedRequestDto {
   private List<MultipartFile> images;
   private String parentId;
   @NotNull
-  private boolean isExpire;
+  private Boolean isExpire;
   @Max(90)
   @Min(0)
   @NotNull
-  private int duration;
+  private Integer duration;
 }

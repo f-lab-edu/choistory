@@ -31,7 +31,7 @@ public class FeedController {
             .content(body.getContent())
             .images(body.getImages())
             .duration(body.getDuration())
-            .expireAt(body.isExpire()? ZonedDateTime.now().plusDays(body.getDuration()):null)
+            .expireAt(body.getIsExpire() ? ZonedDateTime.now().plusDays(body.getDuration()):null)
             .parent(FeedDto.builder().id(body.getParentId()).build())
         .build());
       return ResponseEntity.status(200).build();
