@@ -1,7 +1,7 @@
 package com.choistory.feed.repository;
 
-import org.springframework.stereotype.Repository;
+import com.choistory.feed.entity.Feed;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class FeedRepository {
+public interface FeedRepository extends JpaRepository<Feed, String> {
 }
