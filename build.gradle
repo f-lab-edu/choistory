@@ -37,6 +37,8 @@ dependencies {
     // ===== Third Party Packages ===== //
 
     implementation 'com.mysql:mysql-connector-j'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 

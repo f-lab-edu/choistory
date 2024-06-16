@@ -1,5 +1,6 @@
 package com.choistory.feed.controller;
 
+import com.choistory.common.service.FacadeService;
 import com.choistory.feed.dto.FeedDto;
 import com.choistory.feed.dto.HttpFeedRequestDto;
 import com.choistory.feed.dto.HttpFeedResponseDto;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ import java.time.ZonedDateTime;
 @RequestMapping("v1/feeds")
 @RequiredArgsConstructor
 public class FeedController {
+  private final FacadeService facadeService;
   private final FeedService feedService;
 
   @Operation(summary = "글 쓰기", description = "자신의 피드에 글을 작성 한다. 첨부파일이 있는 경우 파일을 업로드한다.")
@@ -26,20 +29,17 @@ public class FeedController {
   })
   @PostMapping
   public ResponseEntity<Void> createFeed(@RequestBody @Valid HttpFeedRequestDto body){
-    if(body.getImages() != null && body.getImages().size() > 0){
-      // todo. 첨부이미지 업로드 및 save
-      // imageRepository.save(null);
-    }
 
-    feedService.createFeed(FeedDto.builder()
+    facadeService.createFeed(FeedDto.builder()
             .writer(body.getWriter())
             .content(body.getContent())
             .images(null)
             .duration(body.getDuration())
             .expireAt(body.getIsExpire() ? ZonedDateTime.now().plusDays(body.getDuration()):null)
-            .parent(FeedDto.builder().id(body.getParentId()).build())
-        .build());
-      return ResponseEntity.status(200).build();
+            .parent(FeedDto.builder().id(body.getParentId()).build()).build()
+            , body.getImages());
+
+    return ResponseEntity.status(200).build();
   }
   
   @Operation(summary = "작성 글 목록 조회", description = "특정 유저의 글 목록과 각 글에 달린 댓글을 조회한다.")
