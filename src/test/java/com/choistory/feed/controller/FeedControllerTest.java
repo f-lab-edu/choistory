@@ -64,4 +64,18 @@ public class FeedControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk()
         );
     }
+
+    @Test
+    @Transactional
+    @DisplayName("GET /v1/feeds?userId={userId} [CreateFeedSuccess]")
+    void readFeedsSuccessTest() throws Exception{
+        // RequestBody
+        String userId = "7e0bd998-2177-11ef-9e66-0242ac110002";
+
+        this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/v1/feeds")
+                    .param("userId", userId))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.feed[0].writer").value(userId));
+    }
 }
