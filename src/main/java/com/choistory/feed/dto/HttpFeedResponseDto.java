@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 @Builder
 public class HttpFeedResponseDto {
-  private List<FeedDto> feed;
+  private List<FeedDto> feeds;
 }

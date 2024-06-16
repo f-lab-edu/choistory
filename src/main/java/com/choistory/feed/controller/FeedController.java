@@ -49,7 +49,7 @@ public class FeedController {
   @GetMapping
   public ResponseEntity<HttpFeedResponseDto> GetFeeds(@RequestParam("userId") String userId){
     // todo. pagenation 추가.
-    return ResponseEntity.status(200).body(HttpFeedResponseDto.builder().feed(feedService.getFeeds(userId)).build());
+    return ResponseEntity.status(200).body(HttpFeedResponseDto.builder().feeds(feedService.getFeeds(userId)).build());
   }
 
   @Operation(summary = "특정한 1건의 글을 조회", description = "글 아이디로 특정한 글의 상세 정보를 조회한다.")
