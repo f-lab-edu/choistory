@@ -3,7 +3,6 @@ package com.choistory.users.entity;
 import jakarta.persistence.*;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="TB_USER")
@@ -12,23 +11,23 @@ public class User {
   @Column
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
-  @Column
+  @Column(nullable=false, unique = true)
   private String username;
-  @Column
+  @Column(nullable=false)
   private String password;
-  @Column
+  @Column(nullable=false)
   private String email;
-  @Column
+  @Column(nullable=false)
   private String nickname;
-  @Column(name="email_check")
-  private boolean emailCheck;
-  @Column(name="profile_img")
+  @Column(name="email_check", nullable=false)
+  private boolean isEmailChecked;
+  @Column(name="profile_img",nullable=false)
   private String profileImg;
   @Column
   private String bio;
-  @Column
+  @Column(nullable=false)
   private String status;
-  @Column(name="created_at")
+  @Column(name="created_at", nullable=false)
   private ZonedDateTime createdAt;
   @Column(name="deleted_at")
   private ZonedDateTime deletedAt;
