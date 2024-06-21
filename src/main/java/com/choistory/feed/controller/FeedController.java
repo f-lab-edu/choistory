@@ -1,9 +1,9 @@
 package com.choistory.feed.controller;
 
+import com.choistory.common.dto.PageResponseDto;
 import com.choistory.common.service.FacadeService;
 import com.choistory.feed.dto.FeedDto;
 import com.choistory.feed.dto.HttpFeedRequestDto;
-import com.choistory.feed.dto.HttpFeedResponseDto;
 import com.choistory.feed.service.FeedService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,9 +47,9 @@ public class FeedController {
           @Parameter(name="username", description = "글 목록을 작성한 유저네임. 이 파라미터가 없으면 조회한 사람의 글 목록이나 404 오류를 반환한다.")
   })
   @GetMapping
-  public ResponseEntity<HttpFeedResponseDto> GetFeeds(@RequestParam("userId") String userId){
-    // todo. pagenation 추가.
-    return ResponseEntity.status(200).body(HttpFeedResponseDto.builder().feeds(feedService.getFeeds(userId)).build());
+  public ResponseEntity<PageResponseDto<FeedDto>> GetFeeds(@RequestParam("userId") String userId,
+                                                      @RequestParam(required = false, defaultValue = "1") int currentPage){
+    return ResponseEntity.status(200).body(PageResponseDto.of(feedService.getFeeds(userId, currentPage-1)));
   }
 
   @Operation(summary = "특정한 1건의 글을 조회", description = "글 아이디로 특정한 글의 상세 정보를 조회한다.")
