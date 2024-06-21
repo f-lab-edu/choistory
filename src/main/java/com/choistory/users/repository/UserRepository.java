@@ -1,7 +1,7 @@
 package com.choistory.users.repository;
 
-import org.springframework.stereotype.Repository;
+import com.choistory.users.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, String> {
 }

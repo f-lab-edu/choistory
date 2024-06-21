@@ -1,7 +1,8 @@
 package com.choistory.subscribe.repository;
 
-import org.springframework.stereotype.Repository;
+import com.choistory.users.entity.Follow;
+import com.choistory.users.entity.FollowId;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class SubscribeRepository {
+public interface SubscribeRepository extends JpaRepository<Follow, FollowId> {
 }
