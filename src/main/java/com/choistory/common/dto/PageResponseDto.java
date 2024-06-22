@@ -2,20 +2,18 @@ package com.choistory.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 @Getter
+@Builder
 public class PageResponseDto<T> {
-    private final Object contents;
+    private final List<T> contents;
     private final PaginationDto paginationDto;
 
-    public PageResponseDto(Page<T> page) {
-        this.contents = page.getContent();
-
-        this.paginationDto = PaginationDto.of(page.getPageable().getPageSize(),
-            page.getPageable().getPageNumber() + 1, page.getTotalPages(), page.getTotalElements());
-    }
     @JsonProperty("data")
     public Object getContents() {
         return contents;
@@ -28,7 +26,15 @@ public class PageResponseDto<T> {
     }
 
     public static <T> PageResponseDto<T> of(Page<T> page) {
-
-        return new PageResponseDto<>(page);
+        return PageResponseDto.<T>builder()
+                .contents(page.getContent())
+                .paginationDto(
+                        PaginationDto.of(
+                                page.getPageable().getPageSize(),
+                                page.getPageable().getPageNumber()+1,
+                                page.getTotalPages(),
+                                page.getTotalElements()
+                        )
+                ).build();
     }
 }

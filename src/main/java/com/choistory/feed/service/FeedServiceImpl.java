@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class FeedServiceImpl implements FeedService{
+  private final int PER_PAGE = 20;
+
   private final FeedRepository feedRepository;
 
   @Override
@@ -31,7 +33,7 @@ public class FeedServiceImpl implements FeedService{
 
   @Override
   public Page<FeedDto> getFeeds(String userId, int currentPage) {
-    Pageable pageable = PageRequest.of(currentPage, 20);
+    Pageable pageable = PageRequest.of(currentPage, PER_PAGE);
     return feedRepository.findByUserIdAndDeletedAtIsNull(userId, pageable).map(f -> FeedDto.builder()
         .id(f.getFeedId())
         .writer(f.getUserId())
