@@ -3,7 +3,15 @@ spring:
     activate:
       on-profile: k8s
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-service:3306/choistory?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    username: root
-    password: my-secret
+    source:
+      hikari:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://mysql-service:3306/choistory?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+        username: root
+        password: my-secret
+    replica:
+      hikari:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://mysql-service:3307/choistory?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+        username: root
+        password: my-secret
