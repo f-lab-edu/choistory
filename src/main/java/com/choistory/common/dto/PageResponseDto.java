@@ -37,4 +37,10 @@ public class PageResponseDto<T> {
                         )
                 ).build();
     }
+
+    public static <T> PageResponseDto<T> of(List<T> list) {
+        return PageResponseDto.<T>builder()
+            .contents(list)
+            .build();
+    }
 }

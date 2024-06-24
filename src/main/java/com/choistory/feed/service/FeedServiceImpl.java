@@ -19,7 +19,6 @@ public class FeedServiceImpl implements FeedService{
   private final FeedRepository feedRepository;
 
   @Override
-  @Transactional
   public Feed createFeed(FeedDto feed) {
 
     return feedRepository.save(Feed.builder()
@@ -32,6 +31,7 @@ public class FeedServiceImpl implements FeedService{
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<FeedDto> getFeeds(String userId, int currentPage) {
     Pageable pageable = PageRequest.of(currentPage, PER_PAGE);
     return feedRepository.findByUserIdAndDeletedAtIsNull(userId, pageable).map(f -> FeedDto.builder()

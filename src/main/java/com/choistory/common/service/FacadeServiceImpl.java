@@ -18,11 +18,12 @@ public class FacadeServiceImpl implements FacadeService{
   private final FileService fileService;
 
   @Override
-  public void createFeed(FeedDto feedDto, List<MultipartFile> images) {
+  public Feed createFeed(FeedDto feedDto, List<MultipartFile> images) {
     Feed feed = feedService.createFeed(feedDto);
     if(CollectionUtils.isNotEmpty(images)){
       // todo. 첨부이미지 업로드 및 save
       // imageRepository.save(null);
     }
+    return feed;
   }
 }
