@@ -23,7 +23,6 @@ import java.time.ZonedDateTime;
 public class FeedController {
   private final FacadeService facadeService;
   private final FeedService feedService;
-  private final CircularFifoQueue<Feed> feedCache = new CircularFifoQueue<>();
 
   @Operation(summary = "글 쓰기", description = "자신의 피드에 글을 작성 한다. 첨부파일이 있는 경우 파일을 업로드한다.")
   @Parameters({
@@ -31,7 +30,7 @@ public class FeedController {
   })
   @PostMapping
   public ResponseEntity<Void> createFeed(@RequestBody @Valid HttpFeedRequestDto body){
-    Feed feed = facadeService.createFeed(FeedDto.builder()
+    facadeService.createFeed(FeedDto.builder()
             .writer(body.getWriter())
             .content(body.getContent())
             .images(null)
@@ -39,33 +38,16 @@ public class FeedController {
             .expireAt(body.getIsExpire() ? ZonedDateTime.now().plusDays(body.getDuration()):null)
             .parent(FeedDto.builder().id(body.getParentId()).build()).build()
             , body.getImages());
-    feedCache.add(feed);
     return ResponseEntity.status(200).build();
   }
-  
-  @Operation(summary = "작성 글 목록 조회", description = "특정 유저의 글 목록과 각 글에 달린 댓글을 조회한다.")
-  @Parameters({
-          @Parameter(name="username", description = "글 목록을 작성한 유저네임. 이 파라미터가 없으면 조회한 사람의 글 목록이나 404 오류를 반환한다.")
-  })
-  @GetMapping
-  public ResponseEntity<PageResponseDto<FeedDto>> GetFeeds(@RequestParam("userId") String userId,
-                                                      @RequestParam(required = false, defaultValue = "1") int currentPage){
-    return ResponseEntity.status(200).body(PageResponseDto.of(feedService.getFeeds(userId, currentPage-1)));
-  }
-
   @Operation(summary = "작성 글 목록 조회", description = "특정 유저의 글 목록과 각 글에 달린 댓글을 조회한다.")
   @Parameters({
       @Parameter(name="username", description = "글 목록을 작성한 유저네임. 이 파라미터가 없으면 조회한 사람의 글 목록이나 404 오류를 반환한다.")
   })
-  @GetMapping("/cache")
-  public ResponseEntity<PageResponseDto<FeedDto>> GetFeedsFromCache(@RequestParam("userId") String userId,
-                                                           @RequestParam(required = false, defaultValue = "1") int currentPage){
-
-    return ResponseEntity.status(200).body(PageResponseDto.of(feedCache.stream().limit(20).map(f -> FeedDto.builder()
-        .id(f.getFeedId())
-        .writer(f.getUserId())
-        .images(null)
-        .content(f.getContent()).build()).toList()));
+  @GetMapping()
+  public ResponseEntity<PageResponseDto<FeedDto>> getFeed(@RequestParam("userId") String userId,
+                                                                    @RequestParam(required = false, defaultValue = "1") int currentPage){
+    return ResponseEntity.status(200).body(PageResponseDto.of(feedService.getFeeds(userId, currentPage-1)));
   }
 
   @Operation(summary = "특정한 1건의 글을 조회", description = "글 아이디로 특정한 글의 상세 정보를 조회한다.")

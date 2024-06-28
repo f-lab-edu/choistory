@@ -6,7 +6,7 @@ spring:
   profiles:
     active: local
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
       naming:
